@@ -1,0 +1,16 @@
+{
+  "name": "AppRedisSessions",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node sessions.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "mongodb": "*",
+    "connect-redis": "*",
+    "express-session": "*",
+    "habitat" : "*"
+  }
+}
