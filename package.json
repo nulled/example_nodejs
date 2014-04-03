@@ -1,16 +1,18 @@
 {
-  "name": "AppRedisSessions",
+  "name": "Express-SSH-Redis-Sessions-MongoDB",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node sessions.js"
   },
   "dependencies": {
-    "express": "*",
-    "jade": "*",
-    "mongodb": "*",
-    "connect-redis": "*",
-    "express-session": "*",
-    "habitat" : "*"
+    "express" : "4.*",
+    "jade" : "*",
+    "mongodb" : "*",
+    "connect-redis" : "*",
+    "express-session" : "*",
+    "habitat" : "*",
+    "ssh2" : "*",
+
   }
 }
