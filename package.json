@@ -10,9 +10,9 @@
     "jade" : "*",
     "mongodb" : "*",
     "connect-redis" : "*",
+    "cookie-parser": "*",
+    "body-parser": "*",
     "express-session" : "*",
-    "habitat" : "*",
-    "ssh2" : "*",
-
+    "habitat" : "*"
   }
 }
