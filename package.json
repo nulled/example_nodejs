@@ -6,13 +6,14 @@
     "start": "node sessions.js"
   },
   "dependencies": {
-    "express" : "4.*",
-    "jade" : "*",
-    "mongodb" : "*",
-    "connect-redis" : "*",
-    "cookie-parser": "*",
     "body-parser": "*",
-    "express-session" : "*",
-    "habitat" : "*"
+    "connect-redis": "*",
+    "cookie-parser": "*",
+    "express": "4.*",
+    "express-session": "*",
+    "habitat": "*",
+    "jade": "*",
+    "mongodb": "*",
+    "mongoose": "^3.8.8"
   }
 }

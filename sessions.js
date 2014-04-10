@@ -9,23 +9,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var RedisStore = require('connect-redis')(session);
 var storeRedis = new RedisStore({url: 'redis://127.0.0.1:6379/dump', ttl: (3600 * 1), db: 0, prefix: ''});
+var mongoose = require('mongoose');
+var fs = require('fs');
 var env = (function(){
     var Habitat = require('habitat');
     Habitat.load(); // file called .env (add to .gitignore)
     return new Habitat('SESSION'); // export SESSION is prefix (SESSION_EXAMPLE)
 }());
 
-/*
-var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
-var db = MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
-    if (err) throw err;
-    return db;
-});
-var collection = db.collection('test_insert');
-*/
-
 var sessionCookieParams = { domain: '10.10.10.25', path: '/', httpOnly: true, secure: false };
+
+mongoose.connect('mongodb://localhost/test');
 
 //app.use(bodyParser());
 app.use(cookieParser());
@@ -35,12 +29,28 @@ app.use(session({store: storeRedis,
                  cookie: sessionCookieParams
 }));
 
+fs.readdirSync(__dirname + '/models').forEach(function(filename) {
+    if (~filename.indexOf('.js')) require(__dirname + '/models/' + filename);
+});
+
 app.get('/', function(req, res) {
     var output = '';
     for (var prop in res) {
         output += prop + ': ' + req[prop] + "\n";
     }
     res.end(output);
+});
+
+app.get('/users', function(req, res) {
+    mongoose.model('users').find(function(err, users) {
+        res.send(users);
+    });
+});
+
+app.get('/posts', function(req, res) {
+    mongoose.model('posts').find(function(err, posts) {
+        res.send(posts);
+    });
 });
 
 app.get('/home', function(req, res) {
